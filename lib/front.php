@@ -27,9 +27,9 @@ class GF_Tooltips_Front
 		}
 
 		// The GF actions and filters we use.
-		add_action( 'gform_enqueue_scripts',                array( $this, 'scripts_styles'              ),  10, 2   );
-		add_action( 'gform_field_css_class',                array( $this, 'set_tooltip_class'           ),  10, 3   );
-		add_filter( 'gform_field_content',                  array( $this, 'set_tooltip_display'         ),  10, 5   );
+		add_action( 'gform_enqueue_scripts', array( $this, 'scripts_styles' ), 10, 2 );
+		add_action( 'gform_field_css_class', array( $this, 'set_tooltip_class' ), 10, 3 );
+		add_filter( 'gform_field_content', array( $this, 'set_tooltip_display' ), 10, 5 );
 	}
 
 	/**
@@ -155,7 +155,7 @@ class GF_Tooltips_Front
 			$render = GF_Tooltips_Helper::str_replace_limit( $lclass, $lclass . ' ' . $class, $render );
 
 			// Now add the tooltip.
-			$render = GF_Tooltips_Helper::str_replace_limit( $attach, $attach . ' data-hint="' . esc_attr( $text ) . '"', $render );
+			$render = GF_Tooltips_Helper::str_replace_limit( $attach, $attach . ' aria-label="' . esc_attr( $text ) . '"', $render );
 		}
 
 		// Build out icon version.
@@ -165,7 +165,7 @@ class GF_Tooltips_Front
 			$icon   = self::get_tooltip_icon();
 
 			// Build the markup.
-			$setup  = '<span class="gf-icon ' . $class . '" data-hint="' . esc_attr( $text ) . '">' . $icon . '</span>';
+			$setup  = '<span class="gf-icon ' . $class . '" aria-label="' . esc_attr( $text ) . '">' . $icon . '</span>';
 
 			// Determine what to attach to, since sections get handled differently due to markup differences.
 			$attach = 'section' === $field->type ? '</h2>' : '</label>';
@@ -181,7 +181,7 @@ class GF_Tooltips_Front
 			$icon   = self::get_tooltip_icon();
 
 			// Build the markup.
-			$setup  = '<span class="gf-icon ' . $class . '" data-hint="' . esc_attr( $text ) . '">' . $icon . '</span>';
+			$setup  = '<span class="gf-icon ' . $class . '" aria-label="' . esc_attr( $text ) . '">' . $icon . '</span>';
 
 			// Determine what to attach to, since sections get handled differently due to markup differences.
 			$attach = 'section' === $field->type ? '</h2>' : '</div>';

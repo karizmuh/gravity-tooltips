@@ -12,7 +12,7 @@
 /**
  * setting a defined font-weight on tooltip content
  */
-.hint:after, [data-hint]:after {
+.hint:after, [class*="#{$hintPrefix}"]:after {
     font-weight: normal;
 }
 
